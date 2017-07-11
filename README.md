@@ -29,10 +29,10 @@ Sending HTML 	&lt;form&gt; with jQuery ajax
 ```
 ### Options
 #### action
-The path of the program or document that handles the form data.
+A string containing the URL to which the request is sent.
 ```
 default: "/"
-options: string (path to file)
+options: string (URL)
 ```
 #### method
 The HTTP method to use for the request.
