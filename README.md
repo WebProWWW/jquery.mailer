@@ -15,7 +15,7 @@ Submitting AJAX Forms with JQuery
   <button type="submit" class="btn btn-default js-mailer-progress">Submit</button>
 </form>
 ```
-If you need validation, add the "validate" attribute with the value of the validation type ("text" or "email") in the form field
+If you need validation, add the "validate" attribute with the value of the validation type ("text" or "email") in the form field. When the field does not pass validation, the parent element is assigned the class "has-error". In this example, the parent div element with the class "form-group"
 ```html
 <input validate="email" type="text" name="email" class="form-control" id="exampleInputEmail" placeholder="Email">
 <input validate="text" type="text" name="name" class="form-control" id="exampleInputName" placeholder="Name">
