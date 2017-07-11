@@ -11,9 +11,10 @@
       dataType: 'json',
       sendingStr: 'Sending...',
       success: function($form, data) {},
-      error: function($form) {},
-      emailRegex: /^[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.(aero|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name|net|org|pro|travel|mobi|[a-z][a-z])|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$/i
+      error: function($form) {}
     };
+
+    Mailer.prototype.emailRegex = /^[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.(aero|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name|net|org|pro|travel|mobi|[a-z][a-z])|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$/i;
 
     Mailer.prototype.process = false;
 
@@ -108,7 +109,7 @@
               case 'text':
                 return inputVal.length > 2;
               case 'email':
-                return this.settings.emailRegex.test(inputVal);
+                return this.emailRegex.test(inputVal);
               default:
                 return true;
             }

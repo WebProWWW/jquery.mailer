@@ -8,7 +8,7 @@ class Mailer
     sendingStr: 'Sending...'
     success: ($form, data) ->
     error: ($form) ->
-    emailRegex: /^[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.(aero|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name|net|org|pro|travel|mobi|[a-z][a-z])|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$/i
+  emailRegex: /^[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.(aero|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name|net|org|pro|travel|mobi|[a-z][a-z])|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$/i
   process: off
   sendingCurrentHtml: ''
 
@@ -70,7 +70,7 @@ class Mailer
       inputVal = $input.val()
       inputRes = switch validate
         when 'text' then inputVal.length > 2
-        when 'email' then @settings.emailRegex.test inputVal
+        when 'email' then @emailRegex.test inputVal
         else on
       unless inputRes
         result = inputRes
