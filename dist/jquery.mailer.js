@@ -9,8 +9,10 @@
       action: '/',
       method: 'POST',
       dataType: 'json',
-      emailRegex: /^[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.(aero|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name|net|org|pro|travel|mobi|[a-z][a-z])|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$/i,
       sendingStr: 'Sending...',
+      success: function($form, data) {},
+      error: function($form) {},
+      emailRegex: /^[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.(aero|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name|net|org|pro|travel|mobi|[a-z][a-z])|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$/i,
       process: false
     };
 
@@ -58,8 +60,8 @@
     };
 
     Mailer.prototype.success = function($form, data) {
-      console.log('success($form, data)');
-      return console.log(data);
+      $form.trigger('reset');
+      return this.settings.success($form, data);
     };
 
     Mailer.prototype.error = function($form) {
