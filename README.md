@@ -1,5 +1,5 @@
 # jQuery Mailer
-Sending HTML 	&lt;form&gt; with jQuery ajax
+Submitting AJAX Forms with JQuery
 ### Quick start
 #### 1. Create html layout of the form with class "js-mailer".
 ```html
