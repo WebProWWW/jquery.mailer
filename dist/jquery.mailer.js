@@ -12,9 +12,10 @@
       sendingStr: 'Sending...',
       success: function($form, data) {},
       error: function($form) {},
-      emailRegex: /^[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.(aero|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name|net|org|pro|travel|mobi|[a-z][a-z])|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$/i,
-      process: false
+      emailRegex: /^[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.(aero|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name|net|org|pro|travel|mobi|[a-z][a-z])|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$/i
     };
+
+    Mailer.prototype.process = false;
 
     Mailer.prototype.sendingCurrentHtml = '';
 
@@ -65,7 +66,7 @@
     };
 
     Mailer.prototype.error = function($form) {
-      return console.log('error($form)');
+      return this.settings.error($form);
     };
 
     Mailer.prototype.always = function($form) {

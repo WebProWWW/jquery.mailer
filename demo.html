@@ -54,8 +54,8 @@
 $(function() {
   var instance = $('.js-mailer').mailer({
     action: 'send.php',
-    sendSuccess: function($form, data) {
-      console.log(form, data);
+    success: function($form, data) {
+      console.log($form, data);
     },
     error: function($form) {
       console.log($form);

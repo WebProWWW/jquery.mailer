@@ -9,7 +9,7 @@ class Mailer
     success: ($form, data) ->
     error: ($form) ->
     emailRegex: /^[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.(aero|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name|net|org|pro|travel|mobi|[a-z][a-z])|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$/i
-    process: off
+  process: off
   sendingCurrentHtml: ''
 
   constructor: ($form, options) ->
@@ -42,7 +42,7 @@ class Mailer
     @settings.success $form, data
 
   error: ($form) ->
-    console.log 'error($form)'
+    @settings.error $form
 
   always: ($form) ->
     $sending = $form.find '.js-mailer-progress'
