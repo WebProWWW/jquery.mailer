@@ -28,6 +28,8 @@
       </form>
     </div><!--/.col-->
 
+    <hr>
+
     <div class="col-md-6 col-md-offset-3">
       <h3>Form 2 (with attr validate)</h3>
       <form class="js-mailer">
@@ -47,17 +49,70 @@
       </form>
     </div><!--/.col-->
 
+    <hr>
+
+    <div class="col-md-6 col-md-offset-3">
+      <h3>Form 3 (with attr validate and recaptcha)</h3>
+      <form class="js-mailer">
+        <div class="form-group">
+          <label class="control-label" for="exampleInputEmail2">Email address</label>
+          <input type="text" name="email" class="form-control" id="exampleInputEmail2" placeholder="Email" validate1="email">
+        </div>
+        <div class="form-group">
+          <label class="control-label" for="exampleInputName2">Name</label>
+          <input type="text" name="name" class="form-control" id="exampleInputName2" placeholder="Name" validate1="text">
+        </div>
+        <div class="form-group">
+          <label class="control-label" for="exampleInputMsg">Name</label>
+          <textarea class="form-control" rows="3" name="message" id="exampleInputMsg" placeholder="Message" validate1="text"></textarea>
+        </div>
+        <div class="form-group">
+          <label class="control-label">Recaptcha</label>
+          <div class="js-mailer-recaptcha" validate="recaptcha"></div>
+        </div>
+        <button type="submit" class="btn btn-default js-mailer-progress">Submit</button>
+      </form>
+    </div><!--/.col-->
+
+    <hr>
+
+    <div class="col-md-6 col-md-offset-3">
+      <h3>Form 3 (with attr validate and recaptcha)</h3>
+      <form class="js-mailer">
+        <div class="form-group">
+          <label class="control-label" for="exampleInputEmail2">Email address</label>
+          <input type="text" name="email" class="form-control" id="exampleInputEmail2" placeholder="Email" validate1="email">
+        </div>
+        <div class="form-group">
+          <label class="control-label" for="exampleInputName2">Name</label>
+          <input type="text" name="name" class="form-control" id="exampleInputName2" placeholder="Name" validate1="text">
+        </div>
+        <div class="form-group">
+          <label class="control-label" for="exampleInputMsg">Name</label>
+          <textarea class="form-control" rows="3" name="message" id="exampleInputMsg" placeholder="Message" validate1="text"></textarea>
+        </div>
+        <div class="form-group">
+          <label class="control-label">Recaptcha</label>
+          <div class="js-mailer-recaptcha" validate="recaptcha"></div>
+        </div>
+        <button type="submit" class="btn btn-default js-mailer-progress">Submit</button>
+      </form>
+    </div><!--/.col-->
+
   </div><!--/.row-->
 </div><!--/.container-->
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-<script src="dist/jquery.mailer.min.js"></script>
-
+<script src="dist/jquery.mailer.js"></script>
+<!-- <script src="https://www.google.com/recaptcha/api.js?onload=recaptchaOnLoad&render=explicit" async defer></script> -->
+<!-- <script src="https://www.google.com/recaptcha/api.js" async defer></script> -->
 <script>
+
 $(function() {
-  var instance = $('.js-mailer').mailer({
+  var instanceMailer = $('.js-mailer').mailer({
     action: 'send.php',
+    recaptchaKey: '6Ld1axwUAAAAAMZSWWTBSYr3UVt5ZDt7JdQh8a5P',
     success: function($form, data) {
       console.log($form, data);
     },

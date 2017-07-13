@@ -6,15 +6,38 @@ class Mailer
     method: 'POST'
     dataType: 'json'
     sendingStr: 'Sending...'
+    recaptchaKey: off
     success: ($form, data) ->
     error: ($form) ->
   emailRegex: /^[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.(aero|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name|net|org|pro|travel|mobi|[a-z][a-z])|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$/i
+  recaptchaJs: 'https://www.google.com/recaptcha/api.js?onload=recaptchaOnLoad&render=explicit'
   process: off
   sendingCurrentHtml: ''
+  captchaArr: []
 
-  constructor: ($form, options) ->
+  constructor: (@$form, options) ->
     $.extend @settings, options
-    $form.bind 'submit', @onSubmit
+    $.getScript @recaptchaJs if typeof @settings.recaptchaKey is 'string'
+    @$form.bind 'submit', @onSubmit
+
+  renderCaptcha: () ->
+    @captchaArr = new Array
+    @$form.each (i, form) =>
+      $contCaptcha = $(form).find '.js-mailer-recaptcha'
+      $contCaptcha.each (i, contCaptcha) =>
+        $currentCont = $ contCaptcha
+        $currentCont.removeClass 'verified'
+        @captchaArr.push grecaptcha.render contCaptcha,
+          'sitekey': @settings.recaptchaKey
+          'size': 'normal'
+          'theme': 'light'
+          'callback': (responce) => $currentCont.addClass 'verified'
+          # 'expired-callback': @resetCaptcha
+
+  resetCaptcha: () ->
+    for captcha in @captchaArr
+      grecaptcha.reset captcha
+    on
 
   onSubmit: (e) =>
     e.preventDefault()
@@ -47,6 +70,8 @@ class Mailer
   always: ($form) ->
     $sending = $form.find '.js-mailer-progress'
     $sending.html @sendingCurrentHtml
+    $('[validate]').removeClass 'verified'
+    @resetCaptcha()
     on
 
   progress: ($form) ->
@@ -71,6 +96,7 @@ class Mailer
       inputRes = switch validate
         when 'text' then inputVal.length > 2
         when 'email' then @emailRegex.test inputVal
+        when 'recaptcha' then $input.hasClass 'verified'
         else on
       unless inputRes
         result = inputRes
@@ -78,4 +104,7 @@ class Mailer
       on
     return result
 
-$.fn.extend mailer: (options) -> new Mailer @, options
+$.fn.extend mailer: (options) ->
+  instance = new Mailer @, options
+  window.recaptchaOnLoad = () -> instance.renderCaptcha()
+  instance
