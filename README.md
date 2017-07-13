@@ -58,6 +58,12 @@ The plugin looks for an element with the class "js-mailer-progress", remembers t
 default: "Sending..."
 options: string (text / html)
 ```
+#### recaptchaKey
+Google reCAPTCHA V2 site key (data-sitekey)
+```
+default: false
+options: string (data-sitekey)
+```
 ### Callbacks
 #### success
 A function to be called if the request succeeds
