@@ -20,6 +20,7 @@ If you need validation, add the "validate" attribute with the value of the valid
 <input validate="email" type="text" name="email" class="form-control" id="exampleInputEmail" placeholder="Email">
 <input validate="text" type="text" name="name" class="form-control" id="exampleInputName" placeholder="Name">
 <textarea validate="text" class="form-control" rows="3" name="message" id="exampleInputMsg" placeholder="Message"></textarea>
+<div validate="recaptcha" class="js-mailer-recaptcha"></div>
 ```
 #### 2. Add latest jQuery and Mailer files and initialize the plugin.
 ```html
