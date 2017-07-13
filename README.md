@@ -59,7 +59,7 @@ default: "Sending..."
 options: string (text / html)
 ```
 #### recaptchaKey
-Google reCAPTCHA V2 site key (data-sitekey). To output the captcha, insert the "div" element with the class "js-mailer-recaptcha" and the "validate" attribute with the value "recaptcha" inside the formthe form
+Google reCAPTCHA V2 site key (data-sitekey). To output the captcha, insert the "div" element with the class "js-mailer-recaptcha" and the "validate" attribute with the value "recaptcha" inside the form
 ```
 default: false
 options: string (data-sitekey)
